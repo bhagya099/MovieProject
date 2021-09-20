@@ -1,14 +1,18 @@
-//require('dotenv').config();
+require('dotenv').config();
 
 const express = require('express');
 const morgan = require('morgan');
-//const session = require('express-session')
+const session = require('express-session')
 
 const app = express();
 const PORT = process.env.PORT || 3000
 
+// Will be using flash to display success and error messages
+const flash = require('express-flash');
+app.use(flash());
+
 // routers
-//const loginRouter = require('./routes/login');
+const loginRouter = require('./routes/login');
 //const signupRouter = require('./routes/signup');
 const homeRouter = require('./routes/homepage');
 //const logoutRouter = require('./routes/logout');
@@ -26,22 +30,22 @@ app.set('view engine', 'ejs');
 //Set our static folder(CSS)
 app.use(express.static('public'));
 // Session config
-// app.use(
-//   session({
-//     cookie: {
-//       maxAge: 1000 * 60 * 60 * 24,
-//     },
-//     name: 'movies',
-//     resave: false,
-//     saveUninitialized: false,
-//     secret: process.env.SESS_SECRET,
-//   })
-// );
+app.use(
+  session({
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24
+    },
+    name: 'movies',
+    resave: false,
+    saveUninitialized: false,
+    secret: process.env.SESS_SECRET
+  })
+);
 
 //displaying pages using router
 app.use('/', homeRouter);
 //app.use('/signup', signupRouter);
-//app.use('/login', loginRouter);
+app.use('/login', loginRouter);
 //app.use('/logout', logoutRouter);
 
 

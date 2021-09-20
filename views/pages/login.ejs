@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head.ejs') %>
+    <link rel="stylesheet" href="styles.css">
+    <title>Home</title>
+</head>
+<body>
+    <%- include('../partials/nav.ejs') %>
+        <h1 class="text-center">Please log in to be able to rate the movies!</h1>
+        <div class="container flesh-container">
+            <ul class="flash-block">
+                <% if (messages.success_msg) { %> 
+                <li class="text-success"><%= messages.success_msg %></li>
+                <% } %> 
+            </ul>
+        </div>
+        <div class="container">
+            <div id="login-card" class="row">
+                <div class="col-sm-6 col-md-4 col-md-offset-4">
+                    <div class="account-wall">
+                        <img class="profile-img" src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                            alt="">
+                        <form action="/login" method="POST" class="form-signin" novalidate>
+                            <input type="text" class="form-control" placeholder="Email" name="email" required autofocus>
+                            <input type="password" class="form-control" placeholder="Password" name="password" required>
+                            <ul class="flash-block">
+                                <% if (messages.error ) { %> 
+                                <li class="text-danger"><%= messages.error %></li>
+                                <% } %> 
+                            </ul>
+                            <div class="text-center mt-4">
+                                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                                <a href="#" class="pull-right need-help d-block">Forgot password? </a><span class="clearfix"></span>
+                            </div>
+                        </form>
+                    </div>
+                    <a href="/signup" class="text-center new-account">Create an account </a>
+                </div>
+            </div>
+        </div>
+
+    <%- include('../partials/footer.ejs') %>
+</body>
+</html>
