@@ -2,17 +2,17 @@
 
 const express = require('express');
 const morgan = require('morgan');
-//const session = require('express-session')
+//const session = require('express-session');
+const flash = require('express-flash');
 
 const app = express();
 const PORT = process.env.PORT || 3000
 
 // routers
 //const loginRouter = require('./routes/login');
-//const signupRouter = require('./routes/signup');
 const homeRouter = require('./routes/homepage');
+const signupRouter = require('./routes/signup');
 //const logoutRouter = require('./routes/logout');
-
 
 // BODY PARSER
 app.use(express.urlencoded({ extended: false }));
@@ -40,7 +40,7 @@ app.use(express.static('public'));
 
 //displaying pages using router
 app.use('/', homeRouter);
-//app.use('/signup', signupRouter);
+app.use('/signup', signupRouter);
 //app.use('/login', loginRouter);
 //app.use('/logout', logoutRouter);
 
