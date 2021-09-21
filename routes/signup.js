@@ -20,7 +20,7 @@ router.post('/', (req, res) => {
   const { name, email, password, confirm_password } = req.body;
   console.log(req.body);
   // first check the user if exists
-  db.oneOrNone('SELECT * FROM user WHERE email = $1;', email)
+  db.oneOrNone('SELECT * FROM users WHERE email = $1;', email)
     .then((userExists) => {
       if (userExists) {
         res.redirect('/signup?message=Email%20already%20exists.');

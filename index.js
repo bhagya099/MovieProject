@@ -1,4 +1,4 @@
-//require('dotenv').config();
+require('dotenv').config();
 
 const express = require('express');
 const morgan = require('morgan');
@@ -6,7 +6,7 @@ const morgan = require('morgan');
 const flash = require('express-flash');
 
 const app = express();
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3000;
 
 // routers
 //const loginRouter = require('./routes/login');
@@ -44,9 +44,6 @@ app.use('/signup', signupRouter);
 //app.use('/login', loginRouter);
 //app.use('/logout', logoutRouter);
 
-
-
-
 app.listen(PORT, () => {
-    console.log(`server is lisning in : http://localhost:${PORT}`);
+  console.log(`server is lisning in : http://localhost:${PORT}`);
 });
