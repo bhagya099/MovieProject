@@ -49,7 +49,7 @@ router.post('/', (req, res) => {
               [name, cleanEmail, hash]
             )
               .then(() => {
-                res.redirect('/');
+                res.redirect('/login');
               })
               .catch((err) => {
                 console.log(err);
