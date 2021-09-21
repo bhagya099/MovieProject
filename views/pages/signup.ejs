@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head.ejs') %>
+        <title>Home</title>
+</head>
+
+<body>
+    <!-- header -->
+    <header class="text-center m-4">
+        <h1>Sign Up</h1>
+        <p>It's quick and easy.</p>
+    </header>
+
+    <!-- main part  -->
+    <main>
+        <% if (typeof message !=='undefined' ) { %>
+            <h2 style="color: red">
+                <%= message %>
+            </h2>
+            <% } %>
+                <form action="/signup" method="POST" class="container-sm">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name :</label>
+                        <input type="text" class="form-control" id="name" name="name">
+
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email address :</label>
+                        <input type="email" class="form-control" id="email1" aria-describedby="emailHelp" name="email">
+                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password :</label>
+                        <input type="password" class="form-control" id="password" name="password">
+                    </div>
+                    <div class="mb-3">
+                        <label for="confirm_password" class="form-label">Confirm Password :</label>
+                        <input type="password" class="form-control" id="confirm_password" name="confirm_password">
+                    </div>
+                    <button type="submit" class="btn btn-primary" href="/">Submit</button>
+                    <a class="btn btn-primary" role="button" href="/login">Exsisting User</a>
+                </form>
+
+
+    </main>
+
+    <!-- footer -->
+    <%- include('../partials/footer.ejs') %>
+</body>
+
+</html>

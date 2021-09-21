@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon -r dotenv/config index.js",
     "create-db": "psql -U postgres -f sql/create_db.sql",
     "create-table": "psql -U postgres -d movie_db -f sql/create_table.sql",
     "seed-table": "psql -U postgres -d movie_db -f sql/seed_table.sql",
