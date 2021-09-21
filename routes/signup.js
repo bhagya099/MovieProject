@@ -35,13 +35,13 @@ router.post('/', (req, res) => {
         const cleanEmail = email.toLowerCase().trim();
         if (!name || !email || !password || !confirm_password) {
           return res.redirect(
-            '/signup?message=Please%20fill%20the%all details'
+            '/signup?message=Please%20fill%20all%20details.'
           );
         } else {
           // check the password and confirm_password value should be same
           if (password !== confirm_password) {
             return res.redirect(
-              '/signup?message=Passwrod%20should%20be%20match.'
+              '/signup?message=Password%20should%20be%20match.'
             );
           } else {
             db.none(
