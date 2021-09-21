@@ -31,6 +31,7 @@ router.post('/', (req, res) => {
                     if (result) {
                         // if password is correct -> we create a user ID inside the session
                         req.session.userId = user.users_id;
+                        req.flash("success_msg", "You are now logged in and can rate movies");
                         res.redirect('/');
                     } else {
                         req.flash("error", "Either this email doesn't exists or password is not correct");

@@ -2,6 +2,9 @@
 body {
     background:#ddd;
     }	
+
+/* styles for the login page */
+
 .form-signin {
     min-width: 290px;
     padding: 15px;
