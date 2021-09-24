@@ -15,7 +15,6 @@ app.use(flash());
 // routers
 
 const loginRouter = require('./routes/login');
-
 const homeRouter = require('./routes/homepage');
 const signupRouter = require('./routes/signup');
 const logoutRouter = require('./routes/logout');
