@@ -18,6 +18,7 @@ const loginRouter = require('./routes/login');
 const homeRouter = require('./routes/homepage');
 const signupRouter = require('./routes/signup');
 const logoutRouter = require('./routes/logout');
+const detailsRouter = require('./routes/details');
 
 // BODY PARSER
 app.use(express.urlencoded({ extended: false }));
@@ -34,12 +35,12 @@ app.use(express.static('public'));
 app.use(
   session({
     cookie: {
-      maxAge: 1000 * 60 * 60 * 24
+      maxAge: 1000 * 60 * 60 * 24,
     },
     name: 'movies',
     resave: false,
     saveUninitialized: false,
-    secret: process.env.SESS_SECRET
+    secret: process.env.SESS_SECRET,
   })
 );
 
@@ -48,6 +49,7 @@ app.use('/', homeRouter);
 app.use('/login', loginRouter);
 app.use('/signup', signupRouter);
 app.use('/logout', logoutRouter);
+app.use('/details', detailsRouter);
 
 app.listen(PORT, () => {
   console.log(`server is lisning in : http://localhost:${PORT}`);

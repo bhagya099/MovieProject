@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head.ejs') %>
+        <link rel="stylesheet" href="styles.css">
+        <title>Movie Details</title>
+</head>
+
+<body>
+    <%- include('../partials/nav.ejs') %>
+        <header class="text-center m-4">Movie details</header>
+        <main>
+            <div class="container-sm">
+                <div class="row">
+                    <div class="col">
+                        <img src="https://m.media-amazon.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UY67_CR0,0,45,67_AL_.jpg"
+                            alt="poster" style="width: 20rem;">
+                    </div>
+                    <div class="col d-flex flex-column justify-content-center align-item-center">
+                        <h5>Movie title</h5>
+
+                        <ul class="mb-4">
+                            <li>Year</li>
+                            <li>Synopsis</li>
+
+                        </ul>
+                        <!-- <div class="card-body"> -->
+                        <a href="/" class="card-link">Go To Homepage</a>
+                        <a href="#" class="card-link">Rate Movie</a>
+                        <!-- </div> -->
+                    </div>
+                </div>
+            </div>
+        </main>
+        <%- include('../partials/footer.ejs') %>
+</body>
