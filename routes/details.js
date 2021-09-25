@@ -1,9 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  const userId = req.session.userId;
-  res.render('./pages/details', { userId });
+router.get("/:id", (req, res) => {
+  // const userId = req.session.userId;
+  const { id } = req.params;
+  res.render("./pages/details", {
+    id,
+  });
 });
 
 module.exports = router;
