@@ -7,7 +7,7 @@ console.log($("#genreSelection:first-child").val())
 // if (typeof $('#searchText').val() !== 'undefined' && )
 
 //Display all the popular movies
-$.ajax(`${base_URL}/movie/now_playing${api_key}`)
+$.ajax(`${base_URL}/movie/popular${api_key}`)
 .then(data => {
         console.log(data)
         for (let film of data.results) {
