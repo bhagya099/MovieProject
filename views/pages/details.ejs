@@ -8,30 +8,58 @@
 </head>
 
 <body>
+    <!-- nav bar  -->
     <%- include('../partials/nav.ejs') %>
-        <header class="text-center m-4">Movie details</header>
-        <main>
-            <div class="container-sm">
-                <div class="row">
-                    <div class="col">
-                        <img src="https://m.media-amazon.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UY67_CR0,0,45,67_AL_.jpg"
-                            alt="poster" style="width: 20rem;">
+    <!-- <% if (typeof message !=='undefined' ) { %>
+                                                        <h2 style="color: red">
+                                                            <%= message %>
+                                                        </h2>
+                                                        <% } %> -->
+            <header class="text-center m-4">
+                <h1>Movie details</h1>
+            </header>
+            <main>
+                <div class="container-sm">
+            
+                    <div class="row">
+                <!-- image div -->
+                    <div class="col"></div>
+                
+                <!-- movie details div -->
+                    <div class="card m-auto" style="width: 20rem; background-color:#ddd ;">
+                        <div class="card-body"></div>
+            
                     </div>
-                    <div class="col d-flex flex-column justify-content-center align-item-center">
-                        <h5>Movie title</h5>
-
-                        <ul class="mb-4">
-                            <li>Year</li>
-                            <li>Synopsis</li>
-
-                        </ul>
-                        <!-- <div class="card-body"> -->
-                        <a href="/" class="card-link">Go To Homepage</a>
-                        <a href="#" class="card-link">Rate Movie</a>
-                        <!-- </div> -->
                     </div>
+                <!-- for displaying the message after rating -->
+                <section class="film-view"></section>
+
+                <!-- rating div -->
+                <div id="rate-div" class="row  mt-4">
+                    <% if (typeof userId !=='undefined' ){ %>
+                        <h3 class="text-center">Give Rating to movie out of 5</h3>
+                    <form action="/:id" method="POST">
+                        <div class="mb-3">
+                            <label for="rating" class="form-label">Rating</label>
+                            <input type="range" min="1" max="5" id="rating" name="rating">
+                            <button class="btn btn-primary" id='rate'>Submit</button>
+                        </div>
+                    </form>
+                    <% } else { %>
+                        <h3 class="text-center">Please Login to give rating</h3>
+                        <% } %>
                 </div>
-            </div>
-        </main>
-        <%- include('../partials/footer.ejs') %>
+                
+
+            </main>
+
+        <!-- foooter -->
+    <%- include('../partials/footer.ejs') %>
+        <!-- jquery cdn link -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <!-- creating a variable to get movie id  -->
+        <script>const movieID = <%= id %>;</script>
+        <script src="movieDetails.js"></script>
+
 </body>
