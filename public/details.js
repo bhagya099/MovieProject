@@ -1,5 +1,5 @@
 console.log("connected");
-console.log(movieID);
+// console.log(movieID);
 
 // link variables
 const base_URL = "https://api.themoviedb.org/3";
@@ -26,4 +26,17 @@ $.ajax(`${base_URL}/movie/${movieID}${api_key}`).then((data) => {
   $(".card-body").append(homeLink);
   $(".card-body").append(rateLink);
 });
-z;
+
+
+// for posting the rating
+
+$('#rate').on('click', (e) => {
+    e.preventDefault();
+    console.log($('#rating').val());
+    
+    $.post('http://localhost:4009/rate', {
+      rating: $('#rating').val(),
+    });
+    $('#rate-div').append(`<h4>You rated the movie ${$('#rating').val()}`);
+    $('#rate-div form').remove();
+  });

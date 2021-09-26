@@ -8,30 +8,48 @@
 </head>
 
 <body>
+    <!-- nav bar  -->
     <%- include('../partials/nav.ejs') %>
-<header class="text-center m-4">
-    <h1>Movie details</h1>
-</header>
-        <main>
-            <div class="container-sm">
+            <header class="text-center m-4">
+                <h1>Movie details</h1>
             
-                <div class="row">
+            </header>
+            <main>
+                <div class="container-sm">
+            
+                    <div class="row">
                 <!-- image div -->
-                <div class="col"></div>
+                    <div class="col"></div>
                 
                 <!-- movie details div -->
-                <div class="card m-auto" style="width: 20rem; background-color:#ddd ;">
-                    <div class="card-body"></div>
+                    <div class="card m-auto" style="width: 20rem; background-color:#ddd ;">
+                        <div class="card-body"></div>
             
+                    </div>
+                    </div>
+                <section class="film-view">
+                
+                
+                </section>
+                
+                <div id="rate-div" class="row  mt-4">
+                    <h3 class="text-center">Give Rating to movie out of 5</h3>
+                    <form action="/rate" method="POST">
+                        <div class="mb-3">
+                            <label for="rating" class="form-label">Rating</label>
+                            <input type="range" min="1" max="5" id="rating" name="rating">
+                            <button class="btn btn-primary" id='rate'>Submit</button>
+                        </div>
+                    </form>
                 </div>
-            </div>
-        </main>
-        <%- include('../partials/footer.ejs') %>
-<!-- jquery cdn link -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"
-    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<!-- creating a variable to get movie id  -->
-<script>const movieID = <%= id %></script>
-<script src="details.js"></script>
+            </main>
+        <!-- foooter -->
+    <%- include('../partials/footer.ejs') %>
+        <!-- jquery cdn link -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <!-- creating a variable to get movie id  -->
+        <script>const movieID = <%= id %></script>
+        <script src="details.js"></script>
 
 </body>
