@@ -13,10 +13,10 @@ router.get("/:id", (req, res) => {
 
 router.post("/rate", (req, res) => {
   console.log(req.body.rating);
-  db.oneOrNone(
-    "SELECT users_id, rating FROM movies WHERE user_id = $1, rating = $2;",
-    [req.session.userId, req.params.rating]
-  )
+  console.log(req.session.userId);
+  db.oneOrNone("SELECT users_id, rating FROM movies WHERE user_id = $1;", [
+    req.session.userId,
+  ])
     .then((rating) => {
       console.log(rating);
       console.log(req.session.userId);
