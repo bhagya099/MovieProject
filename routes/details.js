@@ -9,6 +9,7 @@ router.get("/:id", (req, res) => {
   res.render("./pages/details", {
     id,
     userId,
+    message: req.query.message,
   });
 });
 
@@ -25,7 +26,6 @@ router.post("/:id", (req, res) => {
   )
     .then((rating) => {
       console.log(rating);
-      console.log(req.session.userId);
       if (rating) {
         res.redirect(
           "/:id?message=You%20already%give%20rating%20to%20this%20movie"
