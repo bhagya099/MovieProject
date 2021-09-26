@@ -12,7 +12,7 @@
     <%- include('../partials/nav.ejs') %>
             <header class="text-center m-4">
                 <h1>Movie details</h1>
-            
+        
             </header>
             <main>
                 <div class="container-sm">
@@ -27,11 +27,10 @@
             
                     </div>
                     </div>
-                <section class="film-view">
-                
-                
-                </section>
-                
+                <!-- for displaying the message after rating -->
+                <section class="film-view"></section>
+
+                <!-- rating div -->
                 <div id="rate-div" class="row  mt-4">
                     <h3 class="text-center">Give Rating to movie out of 5</h3>
                     <form action="/rate" method="POST">
@@ -43,13 +42,14 @@
                     </form>
                 </div>
             </main>
+
         <!-- foooter -->
     <%- include('../partials/footer.ejs') %>
         <!-- jquery cdn link -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <!-- creating a variable to get movie id  -->
-        <script>const movieID = <%= id %></script>
-        <script src="details.js"></script>
+        <script>const movieID = <%= id %>;</script>
+        <script src="movieDetails.js"></script>
 
 </body>
