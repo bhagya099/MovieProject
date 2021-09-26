@@ -12,7 +12,6 @@
     <%- include('../partials/nav.ejs') %>
             <header class="text-center m-4">
                 <h1>Movie details</h1>
-        
             </header>
             <main>
                 <div class="container-sm">
@@ -31,16 +30,27 @@
                 <section class="film-view"></section>
 
                 <!-- rating div -->
+                <% if (typeof message !=='undefined' ) { %>
+                    <h2 style="color: red">
+                        <%= message %>
+                    </h2>
+                    <% } %>
                 <div id="rate-div" class="row  mt-4">
+                    <% if (typeof userId !=='undefined' ) { %>
                     <h3 class="text-center">Give Rating to movie out of 5</h3>
-                    <form action="/rate" method="POST">
+                    <form action="/:id" method="POST">
                         <div class="mb-3">
                             <label for="rating" class="form-label">Rating</label>
                             <input type="range" min="1" max="5" id="rating" name="rating">
                             <button class="btn btn-primary" id='rate'>Submit</button>
                         </div>
                     </form>
+                    <% } else { %>
+                        <h3 class="text-center">Please Login to give rating</h3>
+                        <% } %>
                 </div>
+                
+
             </main>
 
         <!-- foooter -->

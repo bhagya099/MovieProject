@@ -14,13 +14,14 @@ router.get("/:id", (req, res) => {
 
 // for gretting rating value
 
-router.post("/rate", (req, res) => {
+router.post("/:id", (req, res) => {
   console.log(req.body.rating);
   console.log(req.session.userId);
   console.log(req.params.id);
+
   db.oneOrNone(
-    "SELECT users_id, rating FROM movies WHERE movies.users_id = $1;",
-    [req.session.userId]
+    "SELECT movie_id, users_id, rating FROM movies WHERE movies.users_id = $1 AND movie_id = $2;",
+    [req.session.userId, req.params.id]
   )
     .then((rating) => {
       console.log(rating);
@@ -32,7 +33,7 @@ router.post("/rate", (req, res) => {
       } else {
         db.none(
           "INSERT INTO movies (movie_id, users_id, rating) VALUES ($1, $2, $3);",
-          [req.params.id, req.session.userId, req.params.rating]
+          [req.params.id, req.session.userId, req.body.rating]
         )
           .then(() => {
             console.log(rating);
@@ -44,6 +45,8 @@ router.post("/rate", (req, res) => {
           });
       }
     })
-    .catch((err) => {});
+    .catch((err) => {
+      console.log(err);
+    });
 });
 module.exports = router;
