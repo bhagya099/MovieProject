@@ -18,13 +18,13 @@ console.log("connected");
    let homeLink = $(
      `<a type="button" href="/" class=" card-link">Go To Homepage</a>`
    );
-   let rateLink = $(`<a href="#" class="card-link">Rate Movie</a>`);
+  
 
    $(".card-body").append(h4);
    $(".card-body").append(p1);
 
    $(".card-body").append(homeLink);
-   $(".card-body").append(rateLink);
+   
  });
 
  // for posting the rating
