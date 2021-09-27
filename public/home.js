@@ -70,6 +70,9 @@ $.ajax(`${base_URL}/genre/movie/list${api_key}`)
     })
 }) 
 
+const averageRating = 3;
+const usersVoted = 20;
+const YourVote = 5;
 
 // Function to generate movie DOM 
 const getDataFromAPI = (ajaxRequest) => {
@@ -83,8 +86,8 @@ const getDataFromAPI = (ajaxRequest) => {
         let newFilm = $(`<tr>
         <th scope="col"> <img src='${poster_URL}${film.poster_path}' style="width: 50px">  </th>
             <td>${film.title}</td>
-            <td><i class="material-icons">star</i> <strong>9.2</strong></td>
-            <td><i class="material-icons">star_outline</i></td>
+            <td><i class="material-icons">star</i> <strong>${averageRating}</strong>(${usersVoted})</td>
+            <td>${YourVote}<i class="material-icons"></i></td>
             <td><a href="${film.id}"><i class="material-icons">info</i></a></td>
             </tr>`)
             $(".film-list").append(newFilm)
