@@ -27,9 +27,9 @@ router.post("/:id", (req, res) => {
     .then((rating) => {
       console.log(rating);
       if (rating) {
-      return res.redirect(
-        "/:id?message=You%20already%give%20rating%20to%20this%20movie."
-      );
+      return res.send({
+        message: "you already give rating to this movie",
+      });
       } else {
         db.none(
           "INSERT INTO movies (movie_id, users_id, rating) VALUES ($1, $2, $3);",

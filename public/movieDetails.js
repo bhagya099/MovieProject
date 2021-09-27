@@ -35,8 +35,21 @@ console.log("connected");
 
    $.post(`http://localhost:4009/${movieID}`, {
      rating: $("#rating").val(),
-   });
-   $("#rate-div").append(`<h4>You rated the movie ${$("#rating").val()}`);
-   $("#rate-div form").remove();
+   })
+     .then((data) => {
+       console.log(data);
+       if (data.message) {
+         console.log("data message is here");
+         $("#rate-div form").remove();
+         $("#rate-div").append(`${data.message}`);
+       } else {
+         $("#rate-div").append(`<h4>You rated the movie ${$("#rating").val()}`);
+         $("#rate-div form").remove();
+       }
+     })
+     .catch((err) => {
+       console.log(err);
+     });
+   
  });
  
