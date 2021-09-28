@@ -73,27 +73,53 @@ $.ajax(`${base_URL}/genre/movie/list${api_key}`)
 const averageRating = 3;
 const usersVoted = 20;
 
-const averageRating = 3;
-const usersVoted = 20;
-const YourVote = 5;
-
-// Function to generate movie DOM 
+// Function to generate movie DOM using ajax request
 const getDataFromAPI = (ajaxRequest) => {
     $.ajax(ajaxRequest)
     .then(data => {
         
-    $(".film-list").empty()
+        // empty the table before adding movie results
+        $(".film-list").empty()
+        
+        const results = data.results;
 
-    for (let film of data.results) {
-
-        let newFilm = $(`<tr>
-        <th scope="col"> <img src='${poster_URL}${film.poster_path}' style="width: 50px">  </th>
-            <td>${film.title}</td>
-            <td><i class="material-icons">star</i> <strong>${averageRating}</strong>(${usersVoted})</td>
-            <td>${YourVote}<i class="material-icons"></i></td>
-            <td><a href="${film.id}"><i class="material-icons">info</i></a></td>
-            </tr>`)
-            $(".film-list").append(newFilm)
-        }
+        // generating movie tables
+        results.forEach((film, index) => {
+            
+            // if user exists in the system, we generate DOM this way (with user rating column)
+            if (user !== 0) {
+                // getting data from backend on the user ratings
+                $.ajax('/api').then(logedInUserReviews => {
+                    logedInUserReviews.userRatings.forEach(userRating => {
+                        if (film.id === userRating.movie_id) {
+                            showRowWithData(film, averageRating, usersVoted, userRating.rating);
+                        } 
+                    });
+                    
+                    // now we load the rest of the movies (so the ones with rating don't double up)
+                    if ($(`.movie-title:eq(${index})`).text() !== film.title) {
+                        showRowWithData(film, averageRating, usersVoted, '?');
+                    }
+                })
+                .catch(err => console.log(err));
+                
+            } else {
+                // for users which are not logged in we have a different display (no need to show user rating)
+                showRowWithData(film, averageRating, usersVoted, 'NA');
+            }    
+                
+        })
     });
+}
+
+// function to generate each row
+const showRowWithData = (film, averageRating, usersVoted, yourVote) => {
+    let newFilm = $(`<tr>
+        <th scope="col"> <img src='${poster_URL}${film.poster_path}' style="width: 50px">  </th>
+        <td class="movie-title">${film.title}</td>
+        <td><i class="material-icons">star</i> <strong>${averageRating}</strong>(${usersVoted})</td>
+        <td><i class="material-icons">star</i>${yourVote}</td>
+        <td><a href="${film.id}"><i class="material-icons">info</i></a></td>
+        </tr>`)
+    $(".film-list").append(newFilm);
 }
