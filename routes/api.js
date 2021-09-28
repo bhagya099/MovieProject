@@ -2,10 +2,11 @@ const express = require('express');
 const router = express.Router();
 const db = require('../database');
 
+// This route is for passing the data from db to front-end
+
 router.get('/', (req,res) => {
     // getting value of the user id from the session
     const userId = req.session.userId;
-    console.log(userId)
 
     // Working on the part where we show loged in user rating next to each movie on the main page
     if (typeof userId !== 'undefined') {
