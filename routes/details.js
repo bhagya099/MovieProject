@@ -9,21 +9,26 @@ router.get("/:id", (req, res) => {
   db.oneOrNone(
     "SELECT movie_id, users_id, rating FROM movies WHERE movies.users_id = $1 AND movie_id = $2;",
     [req.session.userId, req.params.id]
-  ).then((rating) => {
-    console.log(rating);
-    if (rating) {
-      return res.render("./pages/details", {
-        message: `you already give rating ${rating.rating} to this movie  `,
-        id,
-        userId,
-      });
-    } else {
-      res.render("./pages/details", {
-        id,
-        userId,
-      });
-    }
-  });
+  )
+    .then((rating) => {
+      console.log(rating);
+      if (rating) {
+        return res.render("./pages/details", {
+          message: `you already give rating ${rating.rating} to this movie  `,
+          id,
+          userId,
+        });
+      } else {
+        res.render("./pages/details", {
+          id,
+          userId,
+        });
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+      res.send(error);
+    });
 });
 
 // for gretting rating value
