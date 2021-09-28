@@ -5,7 +5,8 @@ const poster_URL = 'https://image.tmdb.org/t/p/original/';
 //Display all the genre from the api
 $.ajax(`${base_URL}/genre/movie/list${api_key}`)
     .then(data => {
-    console.log(data)
+
+        // Generating data dropdown
     $("#genreSelection").append(`<option class="genre" value="0">Please select a genre</option>`)
     $(data.genres).each((index) => {
     $("#genreSelection").append(`<option class="genre" value="${data.genres[index].id}">${data.genres[index].name}</option>`);
@@ -32,18 +33,18 @@ $.ajax(`${base_URL}/genre/movie/list${api_key}`)
                 .then(data => {
 
                 for (let film of data.results) {
-                console.log(film.genre_ids)
-                let newFilm = $("<tr>")
+
                 film.genre_ids.forEach(i =>{
 
                     if(i === Number(genreValue)){
-
-                    newFilm.append(`
+                        
+                    const newFilm = $(`<tr>
                     <th scope="col"> <img src='${poster_URL}${film.poster_path}' style="width: 50px">  </th>
                     <td>${film.title}</td>
                     <td><i class="material-icons">star</i> <strong>9.2</strong></td>
                     <td><i class="material-icons">star_outline</i></td>
-                    <td><a href="${film.id}"><i class="material-icons">info</i></a></td>`);
+                    <td><a href="${film.id}"><i class="material-icons">info</i></a></td>
+                    </tr>`);
                     $(".film-list").append(newFilm)
                     }
                 }) 
@@ -52,15 +53,14 @@ $.ajax(`${base_URL}/genre/movie/list${api_key}`)
             });
                 
             } else if (isTextFound && !isGenreDefined) {
-            console.log("use text filter for the movies")
             
-        //Display movies based on the search text box
+            //Display movies based on the search text box
                 const searchTextValue = $('#searchText').val();
             
                 getDataFromAPI(`${base_URL}/search/movie/${api_key}&query=${searchTextValue}`)
             //    
         } else if (!isTextFound && isGenreDefined) {
-            console.log("use genre filter for the movies")
+
             //Display movies based on the genre selection
             getDataFromAPI(`${base_URL}/discover/movie${api_key}&with_genres=${e.target.value}`)
         } else {          
@@ -69,6 +69,9 @@ $.ajax(`${base_URL}/genre/movie/list${api_key}`)
         }
     })
 }) 
+
+const averageRating = 3;
+const usersVoted = 20;
 
 const averageRating = 3;
 const usersVoted = 20;
