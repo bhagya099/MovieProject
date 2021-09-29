@@ -9,11 +9,9 @@
     <%- include('../partials/nav.ejs') %>
     <!-- flesh messages after redirecting from login -->
     <div class="container flesh-container">
-        <ul class="flash-block">
-            <% if (messages.success_msg) { %> 
-            <li class="text-success"><%= messages.success_msg %></li>
-            <% } %> 
-        </ul>
+        <% if (messages.success_msg) { %> 
+            <p class="text-success text-center"><%= messages.success_msg %></li>
+        <% } %> 
     </div>
 
     <div class="container-sm">
