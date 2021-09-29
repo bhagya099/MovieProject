@@ -45,37 +45,8 @@ $.ajax(`${base_URL}/genre/movie/list${api_key}`)
 
         } else {       
             //  if both filters are selected we will be getting API be search text and filtering in the browser
-            
-            // Can't use the same function as this even requires filter after API request
-            $(".film-list").empty()
 
-            $.ajax(`${base_URL}/search/movie/${api_key}&query=${searchTextValue}`)
-                .then(data => {
-
-                for (let film of data.results) {
-
-                    film.genre_ids.forEach(i =>{
-
-                        if(i === Number(genreValue)) {
-                        showRowWithData(film, 1, 20, 'NA')
-                        }
-                    }) 
-                }
-
-        });
-        }
-    })
-}) 
-
-const averageRating = 3;
-const usersVoted = 20;
-
-// Function to generate movie DOM using ajax request
-const getDataFromAPI = (ajaxRequest) => {
-    $.ajax(ajaxRequest)
-    .then(data => {
-        
-        // empty the table before adding movie results
+            // empty the table before adding movie results
         $(".film-list").empty()
         
         const results = data.results;
@@ -85,6 +56,7 @@ const getDataFromAPI = (ajaxRequest) => {
             
             // if user exists in the system, we generate DOM this way (with user rating column)
             if (user !== 0) {
+                
                 // getting data from backend on the user ratings
                 $.ajax('/api').then(logedInUserReviews => {
                     logedInUserReviews.userRatings.forEach(userRating => {
@@ -108,6 +80,128 @@ const getDataFromAPI = (ajaxRequest) => {
                 // for users which are not logged in we have a different display (no need to show user rating)
                 showRowWithData(film, averageRating, usersVoted, 'NA');
             }    
+                
+        })
+            
+            // Yet to introduce filter by genre 
+            // // Can't use the same function as this even requires filter after API request
+            // $(".film-list").empty()
+
+            // $.ajax(`${base_URL}/search/movie/${api_key}&query=${searchTextValue}`)
+            //     .then(data => {
+
+            //     for (let film of data.results) {
+
+            //         film.genre_ids.forEach(i =>{
+
+            //             if(i === Number(genreValue)) {
+            //             showRowWithData(film, 1, 20, 'NA')
+            //             }
+            //         }) 
+            //     }
+
+            // });
+        }
+    })
+}) 
+
+const averageRating = 3;
+const usersVoted = 20;
+
+// Function to generate movie DOM using ajax request
+const getDataFromAPI = (ajaxRequest) => {
+    $.ajax(ajaxRequest)
+    .then(data => {
+        
+        // empty the table before adding movie results
+        $(".film-list").empty()
+        
+        const results = data.results;
+
+        // generating movie tables
+        results.forEach((film, index) => {
+            
+            // // if user exists in the system, we generate DOM this way (with user rating column)
+            // if (user !== 0) {
+                // getting data from backend on the user ratings
+                $.ajax('/api').then(userRatings => {
+
+                    console.log(userRatings.ratings)
+
+                    const sumRating = 0;
+
+                    // for getting average
+                        const ratingArray = userRatings.ratings.filter((userRating, index) => {
+
+                            console.log(film.id)
+                            console.log(userRating.movie_id)
+                            return userRating.movie_id === film.id;
+                        });
+
+                        const sum = ratingArray.forEach((ratingObject) => {
+                            console.log(ratingObject)
+                            sumRating = sumRating + ratingObject.rating;
+                            console.log(sumRating)
+                            return sumRating;
+                        })
+
+                        console.log()
+
+                        const averageRating = sum / ratingArray.length;
+
+                        console.log(averageRating);
+
+                    // // get all the rating for reating movies
+                    // userRatings.ratings.filter((userRating, index) => {
+
+                    //     const sum = 0;
+                    //     const elementsNumber = index + 1;
+
+                    //     console.log(userRating)
+
+                    //     if (userRating.movie_id === film.id) {
+
+                    //         console.log(typeof userRating.movie_id)
+                    //         console.log(typeof film.id)
+
+                    //         sum = sum + userRating.rating;
+                    //         elementsNumber++;
+                    //     }
+                        
+                    //     console.log(sum);
+                    //     console.log(elementsNumber)
+
+                    //     const averageRating = sum / elementsNumber;
+
+                    //       console.log(averageRating)
+
+                    //     // // if user exists in the system, we generate DOM this way (with user rating column)
+                    //     // if (user !== 0) {
+
+                    //         // displaying user rating for the movies which have rating in our database
+                    //         if (film.id === userRating.movie_id) {
+                    //             showRowWithData(film, averageRating, elementsNumber, userRating.rating);
+                    //         } 
+
+                    //     // } else {
+
+                    //     // }
+
+                    // });
+                    
+                    // now we load the rest of the movies (so the ones with rating don't double up)
+                    if ($(`.movie-title:eq(${index})`).text() !== film.title) {
+
+                        // movies without user rating will have "?" as a text
+                        showRowWithData(film, averageRating, usersVoted, 'not rated');
+                    }
+                })
+                .catch(err => console.log(err));
+                
+            // } else {
+            //     // for users which are not logged in we have a different display (no need to show user rating)
+            //     showRowWithData(film, averageRating, usersVoted, 'NA');
+            // }    
                 
         })
     });
