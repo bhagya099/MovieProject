@@ -3,12 +3,13 @@ const express = require("express");
 const router = express.Router();
 const db = require("../database");
 
-router.get("/:id", (req, res) => {
+router.get("/", (req, res) => {
   const userId = req.session.userId;
-  const { id } = req.params;
+  let { id } = req.params;
+
   db.oneOrNone(
     "SELECT movie_id, users_id, rating FROM movies WHERE movies.users_id = $1 AND movie_id = $2;",
-    [req.session.userId, req.params.id]
+    [userId, id]
   )
     .then((rating) => {
       console.log(rating);
@@ -33,7 +34,7 @@ router.get("/:id", (req, res) => {
 
 // for gretting rating value
 
-router.post("/:id", (req, res) => {
+router.post("/", (req, res) => {
   console.log(req.body.rating);
   console.log(req.session.userId);
   console.log(req.params.id);

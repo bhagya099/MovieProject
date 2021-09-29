@@ -29,38 +29,15 @@ console.log("connected");
 
  // for posting the rating
 
-//  $("#rate").on("click", (e) => {
-//    e.preventDefault();
-//    console.log($("#rating").val());
-
-//    $.post(`http://localhost:4009/${movieID}`, {
-//      rating: $("#rating").val(),
-//    })
-//      .then((data) => {
-//        console.log(data);
-//        if (data.message) {
-//          console.log("data message is here");
-//          $("#rate-div form").remove();
-//          $("#rate-div").append(`${data.message}`);
-//        } else {
-//          $("#rate-div").append(`<h4>You rated the movie ${$("#rating").val()}`);
-//          $("#rate-div form").remove();
-//        }
-//      })
-//      .catch((err) => {
-//        console.log(err);
-//      });
-   
-//  });
-$('#rate').on('click', (e) => {
+$("#rate").on("click", (e) => {
   e.preventDefault();
-  console.log($('#rating').val());
+  console.log($("#rating").val());
   //   $.ajax();
-  $.post(`http://localhost:4009/${movieID}`, {
-    rating: $('#rating').val(),
+  $.post(`/${movieID}`, {
+    rating: $("#rating").val(),
   });
-  $('#rate-div').append(`<h4>You rated the movie ${$('#rating').val()}`);
-  $('#rate-div form').remove();
+  $("#rate-div").append(`<h4>You rated the movie ${$("#rating").val()}`);
+  $("#rate-div form").remove();
 });
 
  
