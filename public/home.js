@@ -170,7 +170,7 @@ const getAverageRating = (ratingsArray, film) => {
         return rating.movie_id === film.id;
     })
 
-    // fining average from filtered array
+    // finding average from filtered array
     const averageRatingForEachMovie = allRatingsForOneMovie.reduce((r, c) => r + c.rating, 0) / allRatingsForOneMovie.length;
     // since not all movies have ratings, we show NA for movies that don't have it
     const isAverageExists = (averageRatingForEachMovie) ? averageRatingForEachMovie : '';
