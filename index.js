@@ -19,6 +19,7 @@ const homeRouter = require('./routes/homepage');
 const signupRouter = require('./routes/signup');
 const logoutRouter = require('./routes/logout');
 const detailsRouter = require('./routes/details');
+const apiRouter = require('./routes/api');
 
 // BODY PARSER
 app.use(express.urlencoded({ extended: false }));
@@ -49,7 +50,9 @@ app.use('/', homeRouter);
 app.use('/login', loginRouter);
 app.use('/signup', signupRouter);
 app.use('/logout', logoutRouter);
+app.use('/api', apiRouter);
 app.use("/:id", detailsRouter);
+
 
 app.listen(PORT, () => {
   console.log(`server is lisning in : http://localhost:${PORT}`);

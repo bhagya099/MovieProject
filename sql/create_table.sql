@@ -8,9 +8,11 @@ CREATE TABLE IF NOT EXISTS users (
     password VARCHAR(255) NOT NULL);
 
 CREATE TABLE IF NOT EXISTS movies(
+
     id SERIAL PRIMARY KEY,
     movie_id INT NOT NULL,
     users_id INT NOT NULL,
+    movie_id INT NOT NULL,
     rating INT CHECK (rating BETWEEN 1 AND 5) NOT NULL,
     CONSTRAINT fk_users 
     FOREIGN KEY(users_id)
