@@ -51,7 +51,7 @@ app.use('/login', loginRouter);
 app.use('/signup', signupRouter);
 app.use('/logout', logoutRouter);
 app.use('/api', apiRouter);
-app.use("/:id", detailsRouter);
+app.use("/", detailsRouter);
 
 
 app.listen(PORT, () => {

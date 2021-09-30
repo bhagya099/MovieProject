@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 const db = require("../database");
 
-router.get("/", (req, res) => {
+router.get("/:id", (req, res) => {
   const userId = req.session.userId;
   let { id } = req.params;
 
@@ -34,7 +34,7 @@ router.get("/", (req, res) => {
 
 // for gretting rating value
 
-router.post("/", (req, res) => {
+router.post("/:id", (req, res) => {
   console.log(req.body.rating);
   console.log(req.session.userId);
   console.log(req.params.id);
