@@ -12,10 +12,10 @@ router.get("/:id", (req, res) => {
     [userId, id]
   )
     .then((rating) => {
-      console.log(rating);
+     // console.log(rating);
       if (rating) {
         return res.render("./pages/details", {
-          message: `you already give rating ${rating.rating} to this movie  `,
+          message: `Your rating: ${rating.rating}`,
           id,
           userId,
         });

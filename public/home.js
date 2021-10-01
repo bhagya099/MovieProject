@@ -171,7 +171,7 @@ const getAverageRating = (ratingsArray, film) => {
     })
 
     // finding an average rating for each movie (if there is one)
-    let averageRatingForEachMovie = (allRatingsForOneMovie.length > 0) ? (allRatingsForOneMovie.reduce((r, c) => r + c.rating, 0) / allRatingsForOneMovie.length).toFixed(1) : '?';
+    let averageRatingForEachMovie = (allRatingsForOneMovie.length > 0) ? (allRatingsForOneMovie.reduce((r, c) => r + c.rating, 0) / allRatingsForOneMovie.length).toFixed(1) : '0';
     
     // number of votes for each movie
     const numberOfVotes = allRatingsForOneMovie.length;

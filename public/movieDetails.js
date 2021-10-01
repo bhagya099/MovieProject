@@ -16,7 +16,7 @@ console.log("connected");
    let h4 = $(`<h4 class="mb-4 card-title">${data.title}</h4>`);
    let p1 = $(`<p class="card-text">${data.overview}</p>`);
    let homeLink = $(
-     `<a type="button" href="/" class=" card-link">Go To Homepage</a>`
+     `<a type="button" href="/" class=" card-link">Home</a>`
    );
   
 
@@ -36,7 +36,7 @@ $("#rate").on("click", (e) => {
   $.post(`/${movieID}`, {
     rating: $("#rating").val(),
   });
-  $("#rate-div").append(`<h4>You rated the movie ${$("#rating").val()}`);
+  $("#rate-div").append(`<h4>Your ratings:${$("#rating").val()}`);
   $("#rate-div form").remove();
 });
 
