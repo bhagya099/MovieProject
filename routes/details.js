@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 const db = require("../database");
 
-router.get("/:id", (req, res) => {
+router.get("/", (req, res) => {
   const userId = req.session.userId;
   let { id } = req.params;
 
@@ -12,7 +12,7 @@ router.get("/:id", (req, res) => {
     [userId, id]
   )
     .then((rating) => {
-     // console.log(rating);
+      // console.log(rating);
       if (rating) {
         return res.render("./pages/details", {
           message: `Your rating: ${rating.rating}`,
@@ -34,7 +34,7 @@ router.get("/:id", (req, res) => {
 
 // for gretting rating value
 
-router.post("/:id", (req, res) => {
+router.post("/", (req, res) => {
   console.log(req.body.rating);
   console.log(req.session.userId);
   console.log(req.params.id);
