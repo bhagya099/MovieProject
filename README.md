@@ -1,21 +1,19 @@
 # MovieProject
 
-1. This Project is shared by INCO Academy. This is team project , We used github to collabrate.
-2. We used API (TMDB) to get all the movies.
-3. We have to make web app where user can login to rate a movie.
+1. This project was created for INCO Academy. This is a team project , We used github to collabrate.
+2. We API used fot the project is TMDB.
+3. The goal of the project is to create a web app to display movies, its ratings and providing an option for users to login and rate the movies.
 
 # Task -
 
-1. We create a hompage where we can see all the popular movies coming from API.
-2. In homepage ther is search and and genres selction , you can search the movie.
-3. Every movie display with picture, name, rating(average rating from all user in your database), your rating, movie deatils.
-4. When user click on movie details use can see the details and user can rate the movie, but onlu login user can rate the movie,and if user already rated the movie then it has to display their from database.
-5. Only existing user can rate the the movie.
-6. If you are not user you can signup with signup page.
-7. In sign up you have to fill all input field and also password and confirm-password should be same. And password will be save in database as a hash not as text.When user login password will be match with the hash password.
-8. After the login user can rate the movie.
-9. We create a 2 table one is for user details and second is for rating.
-10. In rating table rating should be with the login user Id and movieId(getting from API)
+1. We created a hompage where all the popular movies are fetched from API and dispalyed.
+2. The home page has options to search movies based on keywords,genres and a combination of both.
+3. All the movies display a movie poster, name, rating(average rating from all users in your database), the loged in users rating, movie deatils.
+4. When users click on movie details, an overview of the movie is dispalyed and users can rate the movies only if the user is logged in. It also has the feature of displaying the ratings, if the user has already rated the movie from our database.
+5. If a user does not have an account,he/she can signup and create a new account.
+6. In the sign up page, users will have to fill all input field, password and confirm-password should be same. Passwords are savd as a hash not as text in the database.When user logs in,the password user inputs will be matched with the hashed password.
+9. We have created 2 tables in the database.One for storing the users details and second for storing the movie ratings.
+10. The rating table saves the ratings along with the logged in User's user Id and movieId(Fetched from the API)
 
 # Technology we used -
 1. Node.js
