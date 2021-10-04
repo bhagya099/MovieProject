@@ -20,6 +20,7 @@ const signupRouter = require('./routes/signup');
 const logoutRouter = require('./routes/logout');
 const detailsRouter = require('./routes/details');
 const apiRouter = require('./routes/api');
+const errorRouter = require('./routes/errorPage')
 
 // BODY PARSER
 app.use(express.urlencoded({ extended: false }));
@@ -46,12 +47,15 @@ app.use(
 );
 
 //displaying pages using router
+
 app.use('/', homeRouter);
 app.use('/login', loginRouter);
 app.use('/signup', signupRouter);
 app.use('/logout', logoutRouter);
 app.use('/api', apiRouter);
+//app.use('*', errorRouter);
 app.use("/", detailsRouter);
+app.use('*', errorRouter);
 
 
 app.listen(PORT, () => {
