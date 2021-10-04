@@ -27,3 +27,14 @@
 
 # This is how project will work
 
+# Homepage -![Screen Shot 2021-10-04 at 5 34 14 pm](https://user-images.githubusercontent.com/59786494/135805095-a99db5d7-1c3b-46a1-8c83-22aeef6f4772.png)
+
+
+# details page -
+
+![Screen Shot 2021-10-04 at 5 41 31 pm](https://user-images.githubusercontent.com/59786494/135805174-bcdb44b8-5e50-4fa6-99d0-21733d3668e8.png)
+ 
+ # After login
+ 
+ ![Screen Shot 2021-10-04 at 5 41 17 pm](https://user-images.githubusercontent.com/59786494/135805200-b5c0f6f6-345f-483f-bea3-56d714d3dc05.png)
+
